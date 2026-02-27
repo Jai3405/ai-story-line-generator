@@ -75,7 +75,7 @@ export default function App() {
       done("transcribe");
       done("review");
 
-      setStatus("Generating editor cut sheet...");
+      setStatus("Generating story line...");
       const result = await generateCutSheet({
         transcriptJobId: imported.job_id,
         provider,
@@ -87,7 +87,7 @@ export default function App() {
       setCosts((p) => [
         ...p,
         {
-          label: `Cut Sheet (${result.provider} / ${result.model})`,
+          label: `Story Line (${result.provider} / ${result.model})`,
           provider: result.provider,
           model: result.model,
           input_tokens: result.input_tokens,
@@ -175,7 +175,7 @@ export default function App() {
     setProcessing(true);
     setError(null);
     setStep("generate");
-    setStatus("Generating editor cut sheet...");
+    setStatus("Generating story line...");
 
     try {
       const result = await generateCutSheet({
@@ -188,7 +188,7 @@ export default function App() {
       setCosts((p) => [
         ...p,
         {
-          label: `Cut Sheet (${result.provider} / ${result.model})`,
+          label: `Story Line (${result.provider} / ${result.model})`,
           provider: result.provider,
           model: result.model,
           input_tokens: result.input_tokens,
@@ -249,7 +249,7 @@ export default function App() {
               marginBottom: 6,
             }}
           >
-            INSIDE SUCCESS TV
+            AI STORY LINE GENERATOR
           </h1>
           <p
             style={{
@@ -401,7 +401,7 @@ export default function App() {
           </div>
         )}
 
-        {/* ── Step 6: Cut Sheet Result ────────────────────────────────── */}
+        {/* ── Step 6: Story Line Result ────────────────────────────────── */}
         {step === "complete" && cutsheetData && (
           <div style={{ marginTop: 16 }}>
             <CutSheetViewer cutsheet={cutsheetData} onReset={handleReset} />
@@ -421,7 +421,7 @@ export default function App() {
           }}
         >
           <p style={{ color: "var(--text-muted)", fontSize: 11, letterSpacing: "1px" }}>
-            Inside Success TV Production Pipeline v1.0
+            AI Story Line Generator Production Pipeline v1.0
           </p>
         </footer>
       </div>

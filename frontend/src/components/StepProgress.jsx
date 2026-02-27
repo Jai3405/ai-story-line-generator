@@ -3,7 +3,7 @@ const STEPS = [
   { id: "compress", label: "Compress", icon: "◆" },
   { id: "transcribe", label: "Transcribe", icon: "¶" },
   { id: "review", label: "Review", icon: "◎" },
-  { id: "generate", label: "Cut Sheet", icon: "✂" },
+  { id: "generate", label: "Story Line", icon: "✂" },
   { id: "complete", label: "Done", icon: "✓" },
 ];
 

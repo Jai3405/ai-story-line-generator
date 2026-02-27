@@ -4,9 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from .routers import upload, transcribe, generate
 
 app = FastAPI(
-    title="Inside Success TV — Production Pipeline",
+    title="AI Story Line Generator",
     version="1.0.0",
-    description="Audio transcription and editor cut sheet generation pipeline",
+    description="Audio transcription and AI story line generation pipeline",
 )
 
 # ── CORS (allow React dev server) ────────────────────────────────────────────
@@ -26,4 +26,4 @@ app.include_router(generate.router)
 
 @app.get("/api/health")
 async def health():
-    return {"status": "ok", "service": "Inside Success TV Pipeline"}
+    return {"status": "ok", "service": "AI Story Line Generator Pipeline"}

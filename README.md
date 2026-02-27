@@ -1,8 +1,8 @@
-# Inside Success TV — Production Pipeline
+# AI Story Line Generator — Production Pipeline
 
-Audio transcription and editor cut sheet generation pipeline.
+Audio transcription and AI story line (editor cut sheet) generation pipeline.
 
-**Upload raw audio (up to 2 GB) → FFmpeg compression → Rev AI transcription with speaker diarization → AI-powered editor cut sheet generation (Claude / OpenAI / Gemini)**
+**Upload raw audio (up to 2 GB) → FFmpeg compression → Rev AI transcription with speaker diarization → AI-powered story line generation (Claude / OpenAI / Gemini)**
 
 ---
 
