@@ -77,6 +77,16 @@ export async function getTranscriptResult(jobId) {
   return r.json();
 }
 
+export async function updateTranscript(jobId, { sentences, speakers }) {
+  const r = await fetch(`${API}/transcribe/update/${jobId}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ sentences, speakers }),
+  });
+  if (!r.ok) throw new Error("Failed to save transcript edits");
+  return r.json();
+}
+
 export async function importTranscript(transcriptData) {
   try {
     const r = await fetch(`${API}/transcribe/import`, {

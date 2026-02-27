@@ -105,6 +105,41 @@ async def download_transcript(job_id: str):
     )
 
 
+class UpdateTranscriptRequest(BaseModel):
+    """Update existing transcript: sentences and speakers."""
+    sentences: List[Dict[str, Any]]
+    speakers: List[Dict[str, Any]]
+
+
+@router.put("/update/{job_id}")
+async def update_transcript(job_id: str, request: UpdateTranscriptRequest):
+    """Update an existing transcript on disk."""
+    transcript_path = TRANSCRIPTS_DIR / f"{job_id}.json"
+    if not transcript_path.exists():
+        raise HTTPException(404, "Transcript not found")
+
+    try:
+        # Load existing
+        with open(transcript_path, encoding="utf-8") as f:
+            data = json.load(f)
+
+        # Update fields
+        data["sentences"] = request.sentences
+        data["speakers"] = request.speakers
+        
+        # Recalculate word count
+        data["word_count"] = sum(len(s["text"].split()) for s in request.sentences)
+
+        # Save back
+        with open(transcript_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+
+        return {"status": "success", "job_id": job_id, "word_count": data["word_count"]}
+    except Exception as e:
+        logger.error(f"Failed to update transcript {job_id}: {traceback.format_exc()}")
+        raise HTTPException(500, f"Update failed: {str(e)}")
+
+
 # ── Import Transcript ────────────────────────────────────────────────────────────
 
 @router.post("/import")

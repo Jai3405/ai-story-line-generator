@@ -224,6 +224,10 @@ export default function App() {
     setUploadMode("upload");
   };
 
+  const handleTranscriptUpdate = (newData) => {
+    setTranscriptData(newData);
+  };
+
   return (
     <div style={{ position: "relative", minHeight: "100vh" }}>
       <FloatingCanvas />
@@ -385,8 +389,9 @@ export default function App() {
         {["review", "generate"].includes(step) && transcriptData && (
           <TranscriptViewer
             transcript={transcriptData}
-            jobId={jobId}
+            jobId={jobId ?? transcriptData.job_id}
             onContinue={() => setStep("generate")}
+            onUpdate={handleTranscriptUpdate}
           />
         )}
 
